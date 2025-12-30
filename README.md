@@ -6,17 +6,6 @@ TalentScout is an AI-powered conversational screening platform designed to condu
 The system dynamically adapts questions based on role, experience level, and tech stack, and produces a structured Screening Summary that can be reviewed post-interaction.
 
 
-
-
-## 🚀 Live Demo
-
-👉 Deployed Application:
-
-https://talentscout-screening-app.vercel.app/
-
-
-
-
 ## Problem Statement
 
 Recruiters often spend significant time performing initial candidate screenings. TalentScout automates this stage by:
