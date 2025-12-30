@@ -1,0 +1,36 @@
+[
+  {
+    "stage": "Complete",
+    "name": "Aarav Awasthi",
+    "desiredRole": "Data Analysis",
+    "location": "Mumbai",
+    "rawExperienceInput": "1 year of experience",
+    "experience": "Experienced",
+    "techStack": [
+      "Python",
+      "SQL",
+      "powerbi",
+      "tableau"
+    ],
+    "technicalStage": "RealWorld",
+    "technicalQuestionCount": 3,
+    "technicalResponses": [
+      {
+        "stage": "Conceptual",
+        "question": "In the context of building an analytical data model for reporting (e.g., in PowerBI or Tableau), conceptually explain the role and interaction of fact tables and dimension tables.",
+        "answer": "Fact tables store quantitative metrics and foreign keys (e.g., career prediction scores), while Dimension tables store descriptive attributes (e.g., student skills or job categories). They interact via a one-to-many relationship, where dimensions \"slice and dice\" the facts to provide context for your reports."
+      },
+      {
+        "stage": "Practical",
+        "question": "Given the `sales` table (`sale_id`, `customer_id`, `product_id`, `sale_date`, `quantity`, `price`) and `products` table (`product_id`, `product_category`), write a SQL query to identify, for each `product_category`, the `customer_id(s)` who made the highest total purchase amount in that category during the last calendar month. Ensure to include all customers in case of a tie for the top amount within a category.",
+        "answer": "WITH CategorySales AS (     SELECT          p.product_category,         s.customer_id,         SUM(s.quantity * s.price) AS total_spent,         RANK() OVER (PARTITION BY p.product_category ORDER BY SUM(s.quantity * s.price) DESC) as sales_rank     FROM sales s     JOIN products p ON s.product_id = p.product_id     WHERE s.sale_date >= DATE_TRUNC('month', CURRENT_DATE - INTERVAL '1 month')       AND s.sale_date < DATE_TRUNC('month', CURRENT_DATE)     GROUP BY p.product_category, s.customer_id ) SELECT product_category, customer_id, total_spent FROM CategorySales WHERE sales_rank = 1;"
+      },
+      {
+        "stage": "RealWorld",
+        "question": "You need to provide a daily report showing the total sales amount for each product category, but only for those categories that have recorded sales in the last 30 days. Describe the SQL query you would write, considering a large volume of transactional data.",
+        "answer": "I would join the sales and products tables, filtering the sales records by sale_date to only include the last 30 days. By grouping the result by product_category and calculating the SUM(quantity * price), the query efficiently isolates active categories and their daily totals."
+      }
+    ],
+    "submittedAt": "2025-12-30T09:58:19.399Z"
+  }
+]
